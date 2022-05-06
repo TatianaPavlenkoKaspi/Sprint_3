@@ -6,4 +6,4 @@ import lombok.*;
 public class CourierLogin {
     private String login;
     private String password;
-} 
+}

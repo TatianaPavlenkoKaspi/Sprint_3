@@ -7,7 +7,7 @@ import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class LoginCourier {
+public class LoginCourierTest {
     CourierClient courierClient;
     Courier courier;
     int courierId;

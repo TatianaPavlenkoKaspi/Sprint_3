@@ -10,13 +10,13 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.apache.http.HttpStatus.*;
 
 @RunWith(Parameterized.class)
-public class CreateOrder {
+public class CreateOrderTest {
     String[] color;
     OrderClient orderClient;
     Order order;
     int trackNumber;
 
-    public CreateOrder(String[] color) {
+    public CreateOrderTest(String[] color) {
         this.color = color;
     }
 
