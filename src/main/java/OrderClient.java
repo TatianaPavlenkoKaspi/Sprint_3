@@ -38,3 +38,4 @@ public class OrderClient extends ScooterBaseURL {
                 .then();
     }
 }
+

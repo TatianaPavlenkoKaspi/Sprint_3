@@ -69,4 +69,4 @@ public class RegisterCourierTest {
         assertThat("Courier created", statusCode, equalTo(SC_CONFLICT));
         assertThat(result, equalTo("Этот логин уже используется. Попробуйте другой."));
     }
-} 
+}
