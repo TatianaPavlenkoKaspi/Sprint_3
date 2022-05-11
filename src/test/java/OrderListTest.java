@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static java.util.Optional.empty;
 
 public class OrderListTest {
     OrderClient orderClient;
@@ -27,5 +28,16 @@ public class OrderListTest {
 
         assertThat("Can't create order", statusCode, equalTo(SC_OK));
         assertThat("Empty response", response, notNullValue());
+    }
+
+    @Test
+    @DisplayName("Список заказов не пустой - больше нуля")
+    public void getReturnListOfOrdersNotEmpty(){
+        ValidatableResponse createResponse = orderClient.orders();
+        int statusCode = createResponse.extract().statusCode();
+        ArrayList response = createResponse.extract().path("orders");
+
+        assertThat("Can't create order", statusCode, equalTo(SC_OK));
+        assertThat("Order List is empty", response, is(not(empty())));
     }
 }

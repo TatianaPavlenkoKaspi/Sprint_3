@@ -61,7 +61,7 @@ public class LoginCourierTest {
     }
 
     @Test
-    @DisplayName("Курьер не может авторизоваться, если пароль некорректный")
+    @DisplayName("Курьер не может авторизоваться, если логин некорректный")
     public void courierCantLoginWithNonExistentPairLoginAndPassword(){
         ValidatableResponse loginResponse = courierClient.loginCourier(new CourierLogin(courier.getLogin() + 232, courier.getPassword()));
         int statusCode = loginResponse.extract().statusCode();
@@ -69,5 +69,17 @@ public class LoginCourierTest {
 
         assertThat("Non-existent login", statusCode, equalTo(SC_NOT_FOUND));
         assertThat(message, equalTo("Учетная запись не найдена"));
+    }
+
+    @Test
+    @DisplayName("Курьер не может авторизоваться, если пароль некорректный")
+    public void courierCannotLoginWithWrongPassword(){
+        ValidatableResponse passwordResponse = courierClient.loginCourier(new CourierLogin(courier.getLogin(), courier.getPassword() + 5));
+        int statusCode = passwordResponse.extract().statusCode();
+        String message = passwordResponse.extract().path("message");
+
+        assertThat("Wrong password", statusCode, equalTo(SC_NOT_FOUND));
+        assertThat(message, equalTo("Учетная запись не найдена"));
+
     }
 }
